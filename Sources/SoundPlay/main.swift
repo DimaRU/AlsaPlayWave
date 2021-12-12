@@ -4,7 +4,8 @@ import PlayWave
 if CommandLine.argc > 1 {
     try! playWave(file: CommandLine.arguments[1])
 } else {
-	listAlsadev("pcm")
+	print("Usage: SoundPlay file.wav")
+	
 }
 
 public func playWave(file: String) throws {

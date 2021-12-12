@@ -1,4 +1,6 @@
 #pragma clang assume_nonnull begin
+
 int playWave(const void *data, const char *audioDevice);
-void listAlsadev(const char *devname);
+const char *getErrorMessage(int error);
+
 #pragma clang assume_nonnull end
