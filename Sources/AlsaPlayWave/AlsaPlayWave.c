@@ -23,16 +23,12 @@ static const void *nextChunk(const void *ptr) {
 int playWave(const void *data, const char *audioDevice) {
 	const void *ptr = data;
 	const void *format = getChunkData(ptr, "RIFF");
-	if (format == NULL ||
-		strncmp(format, "WAVE", 4)) {
-			printf("Bad wav format\n");
+	if (format == NULL || strncmp(format, "WAVE", 4)) {
 			return -1;
 	}
 	ptr = format + 4;
 	const WaveFormat *wf = getChunkData(ptr, "fmt ");
-	if (wf == NULL ||
-		wf->audioFormat != 1) {
-			printf("Bad wav format1\n");
+	if (wf == NULL || wf->audioFormat != 1) {
 			return -1;
 	}
 	const void *wavData;
@@ -43,7 +39,6 @@ int playWave(const void *data, const char *audioDevice) {
 
 	unsigned int wavSize = ((ChunkHeader *)ptr)->size;
 	unsigned int numSamples = wavSize / (wf->bitsPerSample / 8 * wf->numChannels);
-	printf("Samples: %d\n", numSamples);
 	return playWaveData(audioDevice, wf, numSamples, wavData);
 }
 

@@ -8,8 +8,15 @@ import AlsaPlayWave
 
 public func playWave(file: String) throws {
     let data = try Data(contentsOf: URL(fileURLWithPath: file))
-    let _ = data.withUnsafeBytes { ptr in
+    let result = data.withUnsafeBytes { ptr in
         playWave(ptr.baseAddress!, "default")
+    }
+    if result == -1 {
+        printf("Bad wav file format\n");
+    } else if result < 0 {
+        let s = getErrorMessage(result)
+        let msg = String.init(cString: s)
+        print("Error:", msg)
     }
 }
 
