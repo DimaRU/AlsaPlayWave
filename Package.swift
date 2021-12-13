@@ -3,15 +3,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "SoundPlay",
+    name: "AlsaPlayWave",
     products: [
-        .library(name: "PlayWave", targets: ["PlayWave"]),
+        .library(name: "AlsaPlayWave", targets: ["AlsaPlayWave"]),
         .executable(name: "SoundPlay", targets: ["SoundPlay"])
     ],
-    dependencies: [],
     targets: [
-        .executableTarget(name: "SoundPlay", dependencies: ["PlayWave"]),
-        .target(name: "PlayWave", dependencies: ["CAlsa"]),
+        .executableTarget(name: "SoundPlay", dependencies: [
+            .target(name: "AlsaPlayWave", condition: .when(platforms: [.linux]))
+        ]),
+        .target(name: "AlsaPlayWave", dependencies: ["CAlsa"]),
         .systemLibrary(name: "CAlsa", pkgConfig: "alsa")
     ]
 )

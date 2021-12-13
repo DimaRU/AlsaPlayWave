@@ -1,3 +1,3 @@
-# SoundPlay
+# AlsaPlayWave
 
-A description of this package.
+Play .wav file on Linux/Alsa

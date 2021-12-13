@@ -1,5 +1,5 @@
 //
-// PlayWave.c
+// AlsaPlayWave.c
 //
 
 #include <alsa/asoundlib.h>
